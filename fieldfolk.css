@@ -1,0 +1,105 @@
+:root{
+  --leaf:#2f6b3a;--leaf-dark:#1f4a28;--turmeric:#e8a81d;--chalk:#f6f8f2;--ink:#1f2a22;--beet:#8a2c45;
+  --line:#cfd8c9;--muted:#55655a;--radius:8px;
+  --grains:#c9962b;--vegetables:#4f9a4a;--fruits:#d9622b;--dairy:#5b8fb9;
+  --shadow:0 2px 8px rgba(31,74,40,.12);--shadow-lift:0 10px 22px rgba(31,74,40,.2)
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI",Tahoma,sans-serif;color:var(--ink);background:var(--chalk);line-height:1.6}
+h1,h2,h3{font-family:Georgia,serif;line-height:1.2}
+h2{font-size:1.6rem}
+h2::after{content:"";display:block;width:3rem;height:4px;margin-top:.4rem;background:var(--turmeric)}
+main{max-width:1000px;margin:0 auto;padding:2rem 1.25rem}
+section{margin-bottom:3rem;scroll-margin-top:5rem}
+footer{margin-top:2rem;padding:1.5rem;border-top:1px solid var(--line);text-align:center;color:var(--muted)}
+
+/* header + navigation (flexbox) */
+header{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;background:var(--leaf-dark);box-shadow:var(--shadow)}
+header a{color:#fff;text-decoration:none}
+header nav a{margin-left:1.5rem;padding-bottom:2px;border-bottom:2px solid transparent;transition:border-color .2s,color .2s}
+header nav a:hover{color:var(--turmeric);border-color:var(--turmeric)}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:Georgia,serif;font-size:1.4rem}
+a:focus-visible,button:focus-visible{outline:3px solid var(--turmeric);outline-offset:3px}
+
+/* hero: furrow lines like rows in a field */
+.hero{padding:3.5rem 2rem;border-radius:var(--radius);color:#fff;background-color:var(--leaf);
+  background-image:repeating-linear-gradient(0deg,transparent 0 20px,rgba(255,255,255,.1) 20px 22px)}
+.hero h1{max-width:16ch;margin:0 0 .75rem;font-size:2.8rem}
+.hero p{max-width:40ch;margin:0;font-size:1.15rem}
+
+/* role cards on the main page (grid) */
+.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem;margin:2rem 0 3rem}
+.role{display:block;padding:2rem;background:#fff;border:2px solid var(--leaf);border-radius:var(--radius);box-shadow:var(--shadow);color:var(--ink);text-decoration:none;transition:background .25s,color .25s,transform .25s,box-shadow .25s}
+.role h2{margin-top:0}
+.role h2::after{background:currentColor;opacity:.35}
+.role::after{content:"Log in as buyer";display:inline-block;margin-top:.5rem;font-weight:600;border-bottom:2px solid currentColor}
+.role.seller::after{content:"Log in as seller"}
+.role:hover,.role:focus-visible{background:var(--leaf);color:#fff;transform:translateY(-4px);box-shadow:var(--shadow-lift)}
+.role.seller{border-color:var(--turmeric)}
+.role.seller:hover,.role.seller:focus-visible{background:var(--turmeric);color:var(--ink)}
+
+/* forms */
+form{display:grid;gap:.6rem;max-width:420px;margin-bottom:1.5rem;padding:1.5rem;background:#fff;border:1px solid var(--line);border-top:4px solid var(--turmeric);border-radius:var(--radius);box-shadow:var(--shadow)}
+label{font-weight:600}
+input,select,button{font:inherit;padding:.55rem .7rem;border:1px solid var(--line);border-radius:var(--radius)}
+input:focus,select:focus{outline:3px solid var(--turmeric);border-color:var(--leaf)}
+input[type="password"]{letter-spacing:.1em}
+input:invalid:not(:placeholder-shown){border-color:var(--beet);background:#fbf1f4}
+button{background:var(--leaf);color:#fff;border:0;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+button:hover{background:var(--leaf-dark)}
+button:active{transform:scale(.97)}
+td button{padding:.3rem .8rem;font-size:.9rem}
+.msg{min-height:1.5rem;margin:0;color:var(--beet);font-weight:600}
+.msg.ok{color:var(--leaf);animation:pop .4s}
+@keyframes pop{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:none}}
+
+/* login pages */
+main.auth{max-width:500px}
+.auth h1{text-align:center}
+.auth form{margin:0 auto}
+
+/* search and filters */
+.filters{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem;padding:1rem;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.filters input{flex:1 1 220px}
+
+/* produce cards (grid); top border colour shows the category */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem}
+.card{padding:1rem;background:#fff;border:1px solid var(--line);border-top:5px solid var(--leaf);border-radius:var(--radius);box-shadow:var(--shadow);transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:var(--shadow-lift);transform:translateY(-3px)}
+.card[data-category="Grains"]{border-top-color:var(--grains)}
+.card[data-category="Vegetables"]{border-top-color:var(--vegetables)}
+.card[data-category="Fruits"]{border-top-color:var(--fruits)}
+.card[data-category="Dairy"]{border-top-color:var(--dairy)}
+.card h3{margin:0}
+.card small{display:block;color:var(--muted)}
+.card input,.card button{width:100%;margin:.25rem 0 .5rem}
+.price{display:block;margin-bottom:.4rem;font-size:1.2rem;font-weight:700;color:var(--leaf)}
+
+/* tables + status pills */
+.scroll{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse}
+th,td{padding:.7rem .8rem;text-align:left;border-bottom:1px solid var(--line)}
+th{background:var(--leaf-dark);color:#fff}
+tr:nth-child(even) td{background:#f3f7ee}
+tbody tr:hover td{background:#e3efd9}
+.status{display:inline-flex;align-items:center;gap:.4rem;padding:.1rem .75rem;border-radius:99px;font-size:.85rem;font-weight:600}
+.status::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:currentColor}
+.pending{background:#fbe9b7;color:#6b4a00}
+.accepted{background:#cfe6d3;color:var(--leaf-dark)}
+.completed{background:var(--leaf);color:#fff}
+
+/* seller profile */
+dl{display:grid;grid-template-columns:max-content 1fr;gap:.25rem 1.5rem;margin:0;padding:1.25rem;background:#fff;border:1px solid var(--line);border-left:5px solid var(--leaf);border-radius:var(--radius);box-shadow:var(--shadow)}
+dt{font-weight:600}
+dd{margin:0}
+
+@media (max-width:600px){
+  header{flex-direction:column;gap:.5rem;padding:.75rem 1rem}
+  header nav a:first-child{margin-left:0}
+  section{scroll-margin-top:8rem}
+  main{padding:1.25rem .75rem}
+  .hero{padding:2rem 1.25rem}
+  .hero h1{font-size:2rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
